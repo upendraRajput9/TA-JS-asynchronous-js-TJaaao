@@ -7,7 +7,7 @@ console.log('First');
 setTimeout(() => console.log('Second'), 0);
 console.log('Third');
 ```
-
+![](./img/ques1.png)
 2.
 
 ```js
@@ -19,7 +19,7 @@ setTimeout(secondCall, 2000); // execute this code after 1000 ms
 setTimeout(() => console.log('Third'), 0); // execute this code after 1000 ms
 console.log('Third');
 ```
-
+![](./img/ques2.png)
 3.
 
 ```js
@@ -31,7 +31,7 @@ setTimeout(secondCall, 1000); // execute this code after 1000 ms
 setTimeout(() => console.log('Third'), 0);
 console.log('Fourth');
 ```
-
+![](./img/ques3.png)
 4.
 
 ```js
@@ -60,13 +60,20 @@ setTimeout(function exec() {
 }, 0);
 runWhileLoopForNSeconds(3);
 console.log('Third');
+/*output 
+First 0ms
+Third 3000ms
+Second 3001ms
+
 ```
 
 6. Convert the synchronous code given below into asynchronous. If you execute this code it will print one, two and three. Change the code in such a way that it should print `one`, `three` and `two`. You are not allowed to move the code up and down.
 
 ```js
 console.log('one');
-console.log('two');
+setTimeout(function exec() {
+  console.log('Second');
+}, 0);
 console.log('three');
 ```
 
@@ -74,16 +81,18 @@ console.log('three');
 
 ```js
 console.log('one');
-console.log('two');
+setTimeout(function exec() {
+  console.log('Second');
+}, 0);
 console.log('three');
 ```
 
 8. Write a function named `asyncForEach` that is similar to `forEach`. But `asyncForEach` is asynchronous in nature rather than synchronous.
 
 ```js
-funciton asyncForEach(){
-  //
-}
+setTimout(funciton asyncForEach(arr,loop){
+  arr.forEach(loop)
+},0)
 //  Output of the function below should be
 // one
 // three
@@ -101,6 +110,12 @@ console.log('three');
 <!-- Last Call -->
 
 Convert the code below in such way that the output should be the one below
+```js
+console.log('First Call');
+function arr(){[1, 2, 3, 4, 5].forEach((num) => console.log(num))};
+setTimeout(arr,0)
+console.log('Last Call');
+```
 
 <!-- First Call -->
 <!-- Last Call -->
@@ -108,6 +123,6 @@ Convert the code below in such way that the output should be the one below
 
 ```js
 console.log('First Call');
-[1, 2, 3, 4, 5].firEach((num) => console.log(num));
+[1, 2, 3, 4, 5].forEach((num) => console.log(num));
 console.log('Last Call');
 ```
