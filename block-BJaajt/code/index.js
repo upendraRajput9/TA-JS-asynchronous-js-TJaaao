@@ -83,10 +83,11 @@ input.addEventListener(`keyup`,handleChange)
 reload.addEventListener(`click`,()=>{
     console.log(`cghj`)
     let xhrcat=new XMLHttpRequest();
-    xhrcat.open(`GET`,`https://api.unsplash.com/photos/random/?client_id=FeJKuoxfAeZQy-N7rhN4BWxT2MXrJ4yNKjCqMwdOHYs`)
+    xhrcat.open(`GET`,`https://api.thecatapi.com/v1/images/search?limit=1&size=full`)
     xhrcat.onload=function(){
     let imageData=JSON.parse(xhrcat.response);
-    catPic.src=imageData.urls.small
+    console.log(imageData)
+    catPic.src=imageData[0].url
     }
     xhrcat.onerror= function(){
         console.log(`something`)
@@ -94,5 +95,3 @@ reload.addEventListener(`click`,()=>{
     xhrcat.send()
 })
 
-// FeJKuoxfAeZQy-N7rhN4BWxT2MXrJ4yNKjCqMwdOHYs
-// https://api.unsplash.com/photos/random/?client_id=FeJKuoxfAeZQy-N7rhN4BWxT2MXrJ4yNKjCqMwdOHYs
