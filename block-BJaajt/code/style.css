@@ -155,15 +155,21 @@ h3{
     border-radius: 50%;
     border:1px dashed rgb(58, 66, 63);
 }
-.catPic{
+/* .catPic{
     width: 30%;
     border:3px dashed dimgray;
     
-}
+} */
 .cat{
     font-weight: lighter;
 
 }
 button{
     margin: 1rem 0;
+    border: 2px solid brown;
+    background-color: burlywood;
+    width: 12%;
+    padding: 7px 2px;
+    border-radius: 3px;
+    font-size: 1.2rem;
 }
