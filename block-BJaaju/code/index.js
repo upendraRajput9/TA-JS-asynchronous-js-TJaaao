@@ -1,6 +1,7 @@
 let input = document.querySelector(`input`)
 let photoGallery = document.querySelector(`div`)
 function handler(event){
+    photoGallery.innerHTML=``
     let url =`https://api.unsplash.com/search/photos?page=1&query=${event.target.value}&per_page=30&client_id=FeJKuoxfAeZQy-N7rhN4BWxT2MXrJ4yNKjCqMwdOHYs`
     if(event.keyCode===13){
         let xhr = new XMLHttpRequest();
