@@ -2,18 +2,29 @@
 
 ```js
 // Your code
+let promise=new Promise(resolve => setTimeout(() =>
+ resolve(`Promise Resolved!`), 1000))
+ .then((values)=>console.log(values));
+ 
 ```
 
 2. Create another promise. Now have it reject with a value of `Rejected Promise!` without using `setTimeout`. Print the contents of the promise after it has been rejected by passing console.log to `.catch`
 
 ```js
 // Your code
+let promise=new Promise((resolve,rejected) => 
+ rejected(`Rejected Promise!`))
+.catch((values)=>console.log(values));
 ```
 
 3. Create another promise. Now have it reject with a value of `Rejected Promise!` without using `setTimeout`. Print the contents of the promise after it has been rejected by passing console.log to `.catch` and also use `.finally` to log message `Promise Settled!`.
 
 ```js
 // Your code
+let promise=new Promise((resolve,rejected) => 
+ rejected(`Rejected Promise!`))
+.catch((values)=>console.log(values)).finally(()=>console.log(`Promise Settled!`))
+
 ```
 
 4. What will be the output of the code below.
@@ -34,6 +45,13 @@ console.log('D');
 
 ```js
 // Your code
+function wait(time){
+    return new Promise((resolve,rejected)=>
+    setTimeout(() =>
+ resolve(`Promise Resolved!`), time)))
+ rejected(`Something went wrong!`)
+}
+wait(2000).then((value)=>console.log(value)).catch();
 ```
 
 6. Do the following:
@@ -47,6 +65,12 @@ console.log('D');
 
 ```js
 // Your code
+let init = new Promise((resolve,rejected)=>{
+    resolve(21)
+    rejected(`Something wents Wrong`)
+}).then((value)=>value+10).then((value)=>value+100).then((value=>{
+    return value
+})).catch()
 ```
 
 7. Do the following:
@@ -59,6 +83,12 @@ console.log('D');
 
 ```js
 // Your code
+let init = new Promise((resolve,rejected)=>{
+    resolve(`['A']`)
+    rejected(`Something wents Wrong`)
+}).then((value)=>value.push(`B`)).then((value)=>value+100).then((value=>{
+    return value
+})).catch()
 ```
 
 8. Do the following:
@@ -70,6 +100,19 @@ console.log('D');
 
 ```js
 // Your code
+let promise = new Promise((resolve,rejected)=>{
+    resolve(1)
+}).then((value)=>{
+    console.log(value)
+    return value+1
+}).then((value)=>{
+    console.log(value)
+    return value+1
+}).then((value)=>{
+    console.log(value)
+    return value+1
+    
+})
 ```
 
 9. Do the following:
@@ -81,6 +124,18 @@ console.log('D');
 
 ```js
 // Your code
+let first = new Promise((resolve,rejected)=>{
+    resolve(1)
+}).then((value)=>{
+    console.log(value)
+    return 2
+}).then((value)=>{
+    console.log(value)
+    return 3
+}).then((value)=>{
+    console.log(value)
+    return 4
+})
 ```
 
 10. Try to understand the difference between the problem 8 and 9. Write your observation.
@@ -94,4 +149,14 @@ console.log('D');
 
 ```js
 // Your code
+let promise = new Promise((resolve,rejected)=>{
+    resolve(`John`)
+}).then(()=>{return new Promise((resolve,rejected)=>{
+    resolve(`John`)
+})})
+.then((value)=>{
+    console.log(value)
+    return new Promise(resolve => setTimeout(() =>
+ resolve(`Bran`), 2000))
+}).then((value)=>console.log(value))
 ```
