@@ -4,7 +4,7 @@
 // Your code
 let promise=new Promise(resolve => setTimeout(() =>
  resolve(`Promise Resolved!`), 1000))
- .then((values)=>console.log(values));
+ promise.then(console.log);
  
 ```
 
@@ -14,7 +14,7 @@ let promise=new Promise(resolve => setTimeout(() =>
 // Your code
 let promise=new Promise((resolve,rejected) => 
  rejected(`Rejected Promise!`))
-.catch((values)=>console.log(values));
+promise.catch(console.log);
 ```
 
 3. Create another promise. Now have it reject with a value of `Rejected Promise!` without using `setTimeout`. Print the contents of the promise after it has been rejected by passing console.log to `.catch` and also use `.finally` to log message `Promise Settled!`.
@@ -23,7 +23,7 @@ let promise=new Promise((resolve,rejected) =>
 // Your code
 let promise=new Promise((resolve,rejected) => 
  rejected(`Rejected Promise!`))
-.catch((values)=>console.log(values)).finally(()=>console.log(`Promise Settled!`))
+promise.catch(console.log).finally(()=>console.log(`Promise Settled!`))
 
 ```
 
@@ -39,6 +39,11 @@ setTimeout(() => console.log('B'), 0); // callback queue
 Promise.resolve().then(() => console.log('C'));
 
 console.log('D');
+
+// A
+// D
+// C
+// B
 ```
 
 5. Write a function named `wait` that accepts `time` in ms returns a promise. The promise gets resolved after given time.
@@ -51,7 +56,7 @@ function wait(time){
  resolve(`Promise Resolved!`), time)))
  rejected(`Something went wrong!`)
 }
-wait(2000).then((value)=>console.log(value)).catch();
+wait(2000).then(console.log).catch();
 ```
 
 6. Do the following:
@@ -68,9 +73,11 @@ wait(2000).then((value)=>console.log(value)).catch();
 let init = new Promise((resolve,rejected)=>{
     resolve(21)
     rejected(`Something wents Wrong`)
-}).then((value)=>value+10).then((value)=>value+100).then((value=>{
-    return value
-})).catch()
+}).then((value)=>value+10).then((value)=>value+100).then((value)=>{
+    if(value>100){
+        throw new Error(`Something went wrong`)
+    }
+}).catch(console.log);
 ```
 
 7. Do the following:
@@ -84,11 +91,23 @@ let init = new Promise((resolve,rejected)=>{
 ```js
 // Your code
 let init = new Promise((resolve,rejected)=>{
-    resolve(`['A']`)
-    rejected(`Something wents Wrong`)
-}).then((value)=>value.push(`B`)).then((value)=>value+100).then((value=>{
-    return value
-})).catch()
+    resolve(['A'])
+    
+})
+.then((value)=>{
+    console.log(value);
+    return value.concat(`B`);
+})
+.then((value)=>{
+    console.log(value);
+    return value.reduce((acc,cv,i)=>{
+        acc[i]=cv;
+        return acc;
+    },{})
+})
+.then((value)=>{
+    console.log(value);
+});
 ```
 
 8. Do the following:
@@ -104,13 +123,13 @@ let promise = new Promise((resolve,rejected)=>{
     resolve(1)
 }).then((value)=>{
     console.log(value)
-    return value+1
+    return 2
 }).then((value)=>{
     console.log(value)
-    return value+1
+    return 3
 }).then((value)=>{
     console.log(value)
-    return value+1
+    return 4
     
 })
 ```
@@ -151,12 +170,11 @@ let first = new Promise((resolve,rejected)=>{
 // Your code
 let promise = new Promise((resolve,rejected)=>{
     resolve(`John`)
-}).then(()=>{return new Promise((resolve,rejected)=>{
-    resolve(`John`)
-})})
+}).then((value)=>{return Promise.resolve(`Arya`)
+})
 .then((value)=>{
     console.log(value)
     return new Promise(resolve => setTimeout(() =>
  resolve(`Bran`), 2000))
-}).then((value)=>console.log(value))
+}).then(console.log)
 ```
