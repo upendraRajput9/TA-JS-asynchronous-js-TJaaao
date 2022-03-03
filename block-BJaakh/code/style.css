@@ -122,6 +122,10 @@ header{
     font-weight: bolder;
     padding-bottom: 3rem;
 }
+button{
+    border: none;
+    background-color: transparent;
+}
 main{
     display: flex;
     justify-content: center;
